@@ -3,19 +3,18 @@ exports.TemperatureUnitsConf = {
 
     units: {
 
-        celcius: {
+        celsius: {
             formulaTo: {
-                fahtrenheit: "(1.8 * &VAL) + 32",
+                fahrenheit: "(1.8 * &VAL) + 32",
                 kelvin: "&VAL + 273.15"
             }
         },
 
-        fahtrenheit: {
+        fahrenheit: {
             formulaTo: {
-                fahtrenheit: "(1.8 * &VAL) + 32",
+                celsius: "(1.8 * &VAL) + 32",
                 kelvin: "&VAL + 273.15"
             }
         }
     }
 };
-
