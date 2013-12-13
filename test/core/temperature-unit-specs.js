@@ -16,8 +16,8 @@ describe("converter-specs", function () {
     });
 
     it("should converter celcius to fahtrenheit", function () {
-        converter.unitFromSelected = "celcius";
-        converter.unitToSelected = "fahtrenheit";
+        converter.unitFromSelected = converter.units.celsius;
+        converter.unitToSelected = converter.units.fahrenheit;
 
         expect(converter.convert(0)).toBe(32);
     });
