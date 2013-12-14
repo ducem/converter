@@ -98,12 +98,25 @@ exports.Converter = Montage.specialize({
 
     convert: {
         value: function (value) {
+            if(isNaN(value)) {
+                return 'error';
+            }
+
             var formulaParsed = this.getFormulaParsed(this.unitFromSelected, this.unitToSelected, value);
 
             if (formulaParsed) {
-                var convert = new Function ('return' + formulaParsed);
+                var convert = new Function ('return ' + formulaParsed);
                 return convert();
             }
+        }
+    },
+
+    swapUnits: {
+        value: function () {
+            var unitTemp = this.unitToSelected;
+
+            this.unitToSelected = this.unitFromSelected;
+            this.unitFromSelected = unitTemp;
         }
     }
 
