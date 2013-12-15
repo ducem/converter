@@ -15,7 +15,7 @@ describe("converter-specs", function () {
         converter.unitCategorySelected = unitCategories.TEMPERATURE;
     });
 
-    it("should convert celcius to fahrenheit", function () {
+    it("should convert celsius to fahrenheit", function () {
         converter.unitFromSelected = converter.units.celsius;
         converter.unitToSelected = converter.units.fahrenheit;
 
@@ -54,7 +54,11 @@ describe("converter-specs", function () {
         converter.unitFromSelected = converter.units.kelvin;
         converter.unitToSelected = converter.units.fahrenheit;
 
-        expect(converter.convert('string')).toBe('error');
+        var convert = function ()  {
+             converter.convert('string');
+        };
+
+        expect(convert).toThrow();
     });
 
     it("should swaps units", function () {

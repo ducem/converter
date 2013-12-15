@@ -99,7 +99,7 @@ exports.Converter = Montage.specialize({
     convert: {
         value: function (value) {
             if(isNaN(value)) {
-                return 'error';
+                throw new Error('The given value in the function "convert" is not number.');
             }
 
             var formulaParsed = this.getFormulaParsed(this.unitFromSelected, this.unitToSelected, value);

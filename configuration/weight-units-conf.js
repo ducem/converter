@@ -1,10 +1,3 @@
-/* 
-    Kilograms to Pounds
-    Grams to Ounces
-
-    pounds to kg
-    Ounces to Gram
-*/
 exports.WeightUnitsConf = {
     categoryName: "WEIGHT",
 
