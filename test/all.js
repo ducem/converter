@@ -3,6 +3,7 @@ require("montage-testing").run(require,[
 
     "test/core/configuration-specs",
     "test/core/converter-specs",
-    "test/core/temperature-unit-specs"
+    "test/core/temperature-unit-specs",
+    "test/core/weight-unit-specs"
 
 ]);
