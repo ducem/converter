@@ -1,29 +1,35 @@
 exports.WeightUnitsConf = {
+
     categoryName: "WEIGHT",
+
+    unitSI: "gram",
+
+    prefixSI: true,
 
     units: {
 
-        kilogram: {
-            formulaTo: {
-                pound: "&VAL * 2.2046"
-            }
-        },
-
         gram: {
+            symbol: "g",
+
             formulaTo: {
-                ounce: "&VAL * 0.035274"
+                ounce: "&VAL * 0.0352739619",
+                pound: "&VAL * 0.0022046226"
             }
         },
 
         pound: {
+            symbol: "lb",
+
             formulaTo: {
-                kilogram: "&VAL / 2.2046"
+                gram: "&VAL / 0.0022046226"
             }
         },
 
         ounce: {
+            symbol: "oz",
+
             formulaTo: {
-                gram: "&VAL / 0.035274"
+                gram: "&VAL / 0.0352739619"
             }
         }
     }
