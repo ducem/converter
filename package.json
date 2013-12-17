@@ -11,5 +11,8 @@
     "exclude": [
         "run-tests.html",
         "test"
-    ]
+    ],
+    "scripts": {
+        "lint": "./node_modules/.bin/jshint --verbose ."
+    }
 }
