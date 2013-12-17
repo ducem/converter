@@ -69,14 +69,40 @@ exports.Converter = Montage.specialize({
         }
     },
 
+    _getSIFormula: {
+        value: function (from, to) {
+            var unitCategory = this.configuration.units[this.unitCategorySelected],
+                formulaToInject = null,
+                unitFrom = unitCategory[from];
+
+            if (unitFrom.SI === true) {
+                formulaToInject = "&VAL * Math.pow(10, " + unitFrom.power + ")";
+            } else {
+                formulaToInject = unitCategory[from].formulaTo[unitCategory.unitReferenceSI];
+            }
+
+            if (to === unitCategory.unitReferenceSI) {
+                return formulaToInject;
+            }
+
+            var formula = this.getFormula(unitCategory.unitReferenceSI, to);
+            return formula.replace(VALUE_PATTERN, formulaToInject);
+        }
+    },
+
     getFormula: {
         value: function (from, to) {
             if (this.configuration) {
                 var unitCategory = this.configuration.units[this.unitCategorySelected];
 
-                if (ConverterLib.isObject(unitCategory, from)) {
-                    var formulas = unitCategory[from].formulaTo;
-                    return ConverterLib.isObject(formulas, to) ? formulas[to] : null;
+                if (ConverterLib.isObject(unitCategory, from) && ConverterLib.isObject(unitCategory, to)) {
+                    if (from !== unitCategory.unitReferenceSI &&
+                        (unitCategory[from].SI === true || unitCategory[to].SI === true)) { // SI unit transform to unitSi
+
+                        return this._getSIFormula(from, to);
+                    }
+
+                    return unitCategory[from].formulaTo[to];
                 }
             }
 

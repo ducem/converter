@@ -14,28 +14,39 @@ describe("converter-specs", function () {
         converter.unitFromSelected = converter.units.kilogram;
         converter.unitToSelected = converter.units.pound;
 
-        expect(converter.convert(2)).toBe(4.4092);
+        expect(converter.convert(2)).toBe(4.4092452);
     });
 
     it("should convert gram to ounce", function () {
         converter.unitFromSelected = converter.units.gram;
         converter.unitToSelected = converter.units.ounce;
 
-        expect(converter.convert(1)).toBe(0.035274);
+        expect(converter.convert(1)).toBe(0.0352739619);
     });
 
     it("should convert pound to kilogram", function () {
         converter.unitFromSelected = converter.units.pound;
         converter.unitToSelected = converter.units.kilogram;
 
-        expect(converter.convert(4.4092)).toBe(2);
+        expect(converter.convert(4.4092452)).toBe(2);
     });
 
-    it("should convert ounce to gram", function () {
-        converter.unitFromSelected = converter.units.ounce;
+    it("should convert SI units", function () {
+        converter.unitFromSelected = converter.units.kilogram;
         converter.unitToSelected = converter.units.gram;
 
-        expect(converter.convert(0.035274)).toBe(1);
+        expect(converter.convert(1)).toBe(1000);
+
+        converter.unitFromSelected = converter.units.decagram;
+        expect(converter.convert(1)).toBe(10);
+
+        converter.unitFromSelected = converter.units.kilogram;
+        converter.unitToSelected = converter.units.decagram;
+        expect(converter.convert(1)).toBe(100);
+
+        converter.unitFromSelected = converter.units.kilogram;
+        converter.unitToSelected = converter.units.centigram;
+        expect(converter.convert(1)).toBe(100000);
     });
 
 });

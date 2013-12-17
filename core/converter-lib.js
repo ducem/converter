@@ -1,12 +1,4 @@
-var Montage = require("montage").Montage;
-
-exports.ConverterLib = Montage.specialize({
-
-    constructor: {
-        value: function ConverterLib () {
-            this.super();
-        }
-    },
+exports.ConverterLib = Object.create(Object.prototype, {
 
     isObject: {
         value: function () {
