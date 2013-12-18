@@ -76,7 +76,7 @@ exports.Converter = Montage.specialize({
                 unitFrom = unitCategory[from];
 
             if (unitFrom.SI === true) {
-                formulaToInject = "&VAL * Math.pow(10, " + unitFrom.power + ")";
+                formulaToInject = VALUE_PATTERN + " * Math.pow(10, " + unitFrom.power + ")";
             } else {
                 formulaToInject = unitCategory[from].formulaTo[unitCategory.unitReferenceSI];
             }

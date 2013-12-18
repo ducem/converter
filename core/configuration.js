@@ -1,6 +1,7 @@
 var Montage = require("montage").Montage,
     Conf = require("configuration/units-conf").Conf,
     UnitsConf = Conf.UnitsConf,
+    VALUE_PATTERN = "&VAL",
     MetricPrefix = Conf.MetricPrefix;
 
 exports.Configuration = Montage.specialize({
@@ -15,6 +16,7 @@ exports.Configuration = Montage.specialize({
             this.unitNames = {};
 
             Object.keys(UnitsConf).forEach(function (unitCategoryKey) {
+
                 var unitCategoryConf = UnitsConf[unitCategoryKey],
                     unitCategoryName = unitCategoryConf.categoryName.toUpperCase();
 
@@ -90,7 +92,7 @@ exports.Configuration = Montage.specialize({
                     power: metricPrefix.power
                 };
 
-                formulas[metricPrefixName] = "&VAL / Math.pow(10," + metricPrefix.power + ")";
+                formulas[metricPrefixName] = VALUE_PATTERN + " / Math.pow(10," + metricPrefix.power + ")";
 
                 injectedUnits.push(metricPrefixName);
             });
