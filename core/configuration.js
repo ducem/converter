@@ -16,7 +16,6 @@ exports.Configuration = Montage.specialize({
             this.unitNames = {};
 
             Object.keys(UnitsConf).forEach(function (unitCategoryKey) {
-
                 var unitCategoryConf = UnitsConf[unitCategoryKey],
                     unitCategoryName = unitCategoryConf.categoryName.toUpperCase();
 
