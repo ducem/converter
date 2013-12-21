@@ -14,14 +14,14 @@ describe("converter-specs", function () {
         converter.unitFromSelected = converter.units.kilogram;
         converter.unitToSelected = converter.units.pound;
 
-        expect(converter.convert(2)).toBe(4.4092452);
+        expect(converter.convert(2)).toBe(4.409);
     });
 
     it("should convert gram to ounce", function () {
         converter.unitFromSelected = converter.units.gram;
         converter.unitToSelected = converter.units.ounce;
 
-        expect(converter.convert(1)).toBe(0.0352739619);
+        expect(converter.convert(1)).toBe(0.035);
     });
 
     it("should convert pound to kilogram", function () {

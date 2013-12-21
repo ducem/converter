@@ -113,8 +113,20 @@ exports.Converter = Montage.specialize({
     getFormulaParsed: {
         value: function (from, to, value) {
             var formula = this.getFormula(from, to, value);
+            var unitCategory = this.configuration.units[this.unitCategorySelected];
 
             if (typeof formula === "string" && formula.length > 0) {
+
+                if(unitCategory.precision) {
+                    var force = 1;
+
+                    for(var i = 0; i < unitCategory.precision; i++) {
+                        force = force * 10; //find better
+                    }
+
+                    return ' Math.round(' + formula.replace(VALUE_PATTERN, value) + ' * ' + force +') / ' + force;
+                }
+
                 return formula.replace(VALUE_PATTERN, value);
             }
 
