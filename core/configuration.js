@@ -1,6 +1,7 @@
 var Montage = require("montage").Montage,
     Conf = require("configuration/units-conf").Conf,
     UnitsConf = Conf.UnitsConf,
+    VALUE_PATTERN = "&VAL",
     MetricPrefix = Conf.MetricPrefix;
 
 exports.Configuration = Montage.specialize({
@@ -27,6 +28,10 @@ exports.Configuration = Montage.specialize({
                         var injectedUnits = self._injectSIFormula(unitCategoryName, unitCategoryConf.unitSI);
                         self._populateUnitNamesWithArray(injectedUnits);
                     }
+                }
+
+                if (unitCategoryConf.precision) {
+                    self.units[unitCategoryName].precision = unitCategoryConf.precision;
                 }
 
                 self.unitCategories[unitCategoryName] = unitCategoryName;
@@ -90,7 +95,7 @@ exports.Configuration = Montage.specialize({
                     power: metricPrefix.power
                 };
 
-                formulas[metricPrefixName] = "&VAL / Math.pow(10," + metricPrefix.power + ")";
+                formulas[metricPrefixName] = VALUE_PATTERN + " / Math.pow(10," + metricPrefix.power + ")";
 
                 injectedUnits.push(metricPrefixName);
             });

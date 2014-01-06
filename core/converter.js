@@ -76,7 +76,7 @@ exports.Converter = Montage.specialize({
                 unitFrom = unitCategory[from];
 
             if (unitFrom.SI === true) {
-                formulaToInject = "&VAL * Math.pow(10, " + unitFrom.power + ")";
+                formulaToInject = VALUE_PATTERN + " * Math.pow(10, " + unitFrom.power + ")";
             } else {
                 formulaToInject = unitCategory[from].formulaTo[unitCategory.unitReferenceSI];
             }
@@ -113,8 +113,20 @@ exports.Converter = Montage.specialize({
     getFormulaParsed: {
         value: function (from, to, value) {
             var formula = this.getFormula(from, to, value);
+            var unitCategory = this.configuration.units[this.unitCategorySelected];
 
             if (typeof formula === "string" && formula.length > 0) {
+
+                if(unitCategory.precision) {
+                    var force = 1;
+
+                    for(var i = 0; i < unitCategory.precision; i++) {
+                        force = force * 10; //find better
+                    }
+
+                    return ' Math.round(' + formula.replace(VALUE_PATTERN, value) + ' * ' + force +') / ' + force;
+                }
+
                 return formula.replace(VALUE_PATTERN, value);
             }
 

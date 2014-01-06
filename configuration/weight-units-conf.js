@@ -6,6 +6,8 @@ exports.WeightUnitsConf = {
 
     prefixSI: true,
 
+    precision: 3,
+
     units: {
 
         gram: {
