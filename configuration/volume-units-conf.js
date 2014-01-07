@@ -5,8 +5,6 @@ exports.VolumeUnitsConf = {
 
     prefixSI: true,
 
-    precision: 2,
-
     units: {
 
         liter: {

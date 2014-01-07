@@ -30,10 +30,6 @@ exports.Configuration = Montage.specialize({
                     }
                 }
 
-                if (unitCategoryConf.precision) {
-                    self.units[unitCategoryName].precision = unitCategoryConf.precision;
-                }
-
                 self.unitCategories[unitCategoryName] = unitCategoryName;
                 self._populateUnitNamesWithUnitCategory(unitCategoryConf);
             });
