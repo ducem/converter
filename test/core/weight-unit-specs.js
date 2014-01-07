@@ -8,20 +8,32 @@ describe("converter-specs", function () {
         converter = Converter.create();
         var unitCategories = converter.configuration.unitCategories;
         converter.unitCategorySelected = unitCategories.WEIGHT;
-        converter.precision = 2;
     });
 
     it("should convert kilogram to pound", function () {
         converter.unitFromSelected = converter.units.kilogram;
         converter.unitToSelected = converter.units.pound;
+        expect(converter.convert(2)).toBe(4.4092452);
 
+        converter.precision = 2;
         expect(converter.convert(2)).toBe(4.41);
+
+        converter.precision = 0;
+        expect(converter.convert(2)).toBe(4);
     });
 
     it("should convert gram to ounce", function () {
         converter.unitFromSelected = converter.units.gram;
         converter.unitToSelected = converter.units.ounce;
+        expect(converter.convert(1)).toBe(0.0352739619);
 
+        converter.precision = 4;
+        expect(converter.convert(1)).toBe(0.0353);
+
+        converter.precision = 2.2;
+        expect(converter.convert(1)).toBe(0.04);
+
+        converter.precision = -2;
         expect(converter.convert(1)).toBe(0.04);
     });
 
