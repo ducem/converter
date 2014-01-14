@@ -24,6 +24,21 @@ exports.Converter = Montage.specialize({
         value: null
     },
 
+    _precision: {
+        value: null
+    },
+
+    precision: {
+        set: function (precision) {
+            if (typeof precision === 'number') {
+                this._precision = parseInt( Math.abs(precision), 10);
+            }
+        },
+        get: function () {
+            return this._precision;
+        }
+    },
+
     _unitCategorySelected: {
         value: null
     },
@@ -116,17 +131,6 @@ exports.Converter = Montage.specialize({
             var unitCategory = this.configuration.units[this.unitCategorySelected];
 
             if (typeof formula === "string" && formula.length > 0) {
-
-                if(unitCategory.precision) {
-                    var force = 1;
-
-                    for(var i = 0; i < unitCategory.precision; i++) {
-                        force = force * 10; //find better
-                    }
-
-                    return ' Math.round(' + formula.replace(VALUE_PATTERN, value) + ' * ' + force +') / ' + force;
-                }
-
                 return formula.replace(VALUE_PATTERN, value);
             }
 
@@ -144,6 +148,12 @@ exports.Converter = Montage.specialize({
 
             if (formulaParsed) {
                 var convert = new Function ('return ' + formulaParsed);
+
+                if (this.precision > 0) {
+                    var pow = Math.pow(10, this.precision);
+                    return Math.round(convert() * pow) / pow;
+                }
+
                 return convert();
             }
         }

@@ -33,13 +33,13 @@ describe("converter-specs", function () {
         converter.unitFromSelected = converter.units.liter;
         converter.unitToSelected = converter.units.us_barrel_liquid;
 
-        expect(converter.convert(500)).toBe(4.19);
+        expect(converter.convert(500)).toBe(4.1932);
     });
 
     it("should convert cubic_inch to cubic_yard", function () {
         converter.unitFromSelected = converter.units.cubic_inch;
         converter.unitToSelected = converter.units.cubic_yard;
 
-        expect(converter.convert(1000)).toBe(0.02);
+        expect(converter.convert(1000)).toBe(0.021433);
     });
 });
