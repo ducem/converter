@@ -31,7 +31,7 @@ exports.Converter = Montage.specialize({
     precision: {
         set: function (precision) {
             if (typeof precision === 'number') {
-                this._precision = parseInt( Math.abs(precision) );
+                this._precision = parseInt( Math.abs(precision), 10);
             }
         },
         get: function () {
@@ -149,12 +149,9 @@ exports.Converter = Montage.specialize({
             if (formulaParsed) {
                 var convert = new Function ('return ' + formulaParsed);
 
-                if (typeof this.precision == 'number') {
-                    if(this.precision > 0) {
-                        return Math.round(convert() * (Math.pow(10, this.precision))) / Math.pow(10, this.precision);
-                    } else {
-                        return Math.round(convert());
-                    }
+                if (this.precision > 0) {
+                    var pow = Math.pow(10, this.precision);
+                    return Math.round(convert() * pow) / pow;
                 }
 
                 return convert();

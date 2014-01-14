@@ -19,7 +19,7 @@ describe("converter-specs", function () {
         expect(converter.convert(2)).toBe(4.41);
 
         converter.precision = 0;
-        expect(converter.convert(2)).toBe(4);
+        expect(converter.convert(2)).toBe(4.4092452);
     });
 
     it("should convert gram to ounce", function () {
