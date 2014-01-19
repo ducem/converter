@@ -128,7 +128,6 @@ exports.Converter = Montage.specialize({
     getFormulaParsed: {
         value: function (from, to, value) {
             var formula = this.getFormula(from, to, value);
-            var unitCategory = this.configuration.units[this.unitCategorySelected];
 
             if (typeof formula === "string" && formula.length > 0) {
                 return formula.replace(VALUE_PATTERN, value);
@@ -140,9 +139,7 @@ exports.Converter = Montage.specialize({
 
     convert: {
         value: function (value) {
-            if(isNaN(value)) {
-                throw new Error('The given value in the function "convert" is not number.');
-            }
+            value = Number(value);
 
             var formulaParsed = this.getFormulaParsed(this.unitFromSelected, this.unitToSelected, value);
 
