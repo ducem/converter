@@ -1,18 +1,17 @@
 /**
- * @module ui/main.reel
+ * @module ui/settings.reel
  * @requires montage/ui/component
  */
 var Component = require("montage/ui/component").Component;
 
 /**
- * @class Main
+ * @class Settings
  * @extends Component
  */
-exports.Main = Component.specialize(/** @lends Main# */ {
+exports.Settings = Component.specialize(/** @lends Settings# */ {
     constructor: {
-        value: function Main() {
+        value: function Settings() {
             this.super();
         }
     }
-
 });

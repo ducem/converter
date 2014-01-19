@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="converter.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "converter"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+
+        "numberTextField": {
+            "prototype": "digit/ui/text-field.reel",
+            "properties": {
+                "element": {"#": "convert-number"},
+                "placeholder": "Celsius"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.valueToConvert"}
+            }
+        },
+
+        "resultTextField": {
+            "prototype": "digit/ui/text-field.reel",
+            "properties": {
+                "element": {"#": "convert-result"},
+                "placeholder": "Fahrenheit"
+            },
+            "bindings": {
+                "value": {"<-": "@owner.convertedValue"}
+            }
+        }
+
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="converter" class="Converter">
+        <input data-montage-id="convert-number" type="text" placeholder="Celsius" />
+        <input data-montage-id="convert-result" type="text" placeholder="Fahrenheit" />
+    </div>
+</body>
+</html>
